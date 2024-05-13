@@ -1,4 +1,4 @@
-# Realtime Election Voting System
+# Realtime Indian Election Voting System
 
 ## Description
 This project is a Realtime Election Voting System built using Python, Kafka, Spark Streaming, Postgres, and Streamlit. The system is containerized using Docker Compose, making it easy to set up and run all required services in Docker containers.
