@@ -4,7 +4,8 @@
 This project is a Realtime Election Voting System built using Python, Kafka, Spark Streaming, Postgres, and Streamlit. The system is containerized using Docker Compose, making it easy to set up and run all required services in Docker containers.
 
 ## Project Architecture
-![System_architecture](https://github.com/tejasjbansal/realtime-voting-data-engineering/assets/56173595/e352d512-4737-41be-8d02-72c7154e673f)
+![Blank diagram](https://github.com/tejasjbansal/realtime-voting-data-engineering/assets/56173595/29376361-60d6-4ea6-afcd-7c68fe8bd4a2)
+
 
 ## System Flow
 ![System Flow](https://github.com/tejasjbansal/realtime-voting-data-engineering/assets/56173595/dd251fa7-67c4-4e9a-aaa7-2afae6720315)
