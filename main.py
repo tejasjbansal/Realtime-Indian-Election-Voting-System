@@ -4,10 +4,7 @@ import psycopg2
 import requests
 import simplejson as json
 from confluent_kafka import SerializingProducer
-
-BASE_URL = 'https://randomuser.me/api/?nat=in'
-CANDIDATES = ["Narendra Damodardas Modi","Rahul Rajiv Gandhi","Arvind Kejriwal","Akhilesh Yadav"]
-PARTIES = ["BJP Party", "CONGRESS Party", "AAP Party","SAMAJWADI Party"]
+from constants import *
 
 
 # Function to create candidates table
@@ -71,21 +68,21 @@ def get_candidates_from_db(cur):
     print(candidates)
     return candidates
 
-def generate_candidate_data(candidate_number, total_parties):
+def generate_candidate_data(candidate_number):
     
     return {
-        "candidate_id": user_data['login']['uuid'],
-        "candidate_name": f"{user_data['name']['first']} {user_data['name']['last']}",
-        "party_affiliation": PARTIES[candidate_number % total_parties],
-        "biography": "A brief bio of the candidate.",
+        "candidate_id": CANDIDATES_ID[candidate_number],
+        "candidate_name": CANDIDATES[candidate_number],
+        "party_affiliation": PARTIES[candidate_number],
+        "biography": BIOGRAPHY[candidate_number],
         "campaign_platform": "Key campaign promises or platform.",
-        "photo_url": user_data['picture']['large']
+        "photo_url": PHOTO_URL[candidate_number]
     }
 
 # Function to insert initial candidates if none exist in the database
 def insert_initial_candidates(conn, cur):
     for i in range(4):
-        candidate = generate_candidate_data(i, 4)
+        candidate = generate_candidate_data(i)
         print(candidate)
         cur.execute("""
                     INSERT INTO candidates (candidate_id, candidate_name, party_affiliation, biography, campaign_platform, photo_url)
@@ -122,7 +119,7 @@ def generate_voter_data():
     else:
         return "Error fetching data"
 
-def insert_voters(conn, cur, voter)
+def insert_voters(conn, cur, voter):
     cur.execute("""
                         INSERT INTO voters (voter_id, voter_name, date_of_birth, gender, nationality, registration_number, address_street, address_city, address_state, address_country, address_postcode, email, phone_number, cell_number, picture, registered_age)
                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s,%s,%s,%s,%s,%s)
@@ -181,9 +178,8 @@ if __name__ == "__main__":
         # If no candidates exist in the database, insert initial candidates
         if len(candidates) == 0:
             insert_initial_candidates(conn, cur)
-        else:
-            # Otherwise, produce voters and send them to Kafka topic
-            produce_voters(conn, cur, producer, voters_topic)
+        
+        produce_voters(conn, cur, producer, voters_topic)
         
     except Exception as e:
         print(e)
