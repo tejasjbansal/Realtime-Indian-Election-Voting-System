@@ -27,5 +27,11 @@ This project is a Realtime Election Voting System built using Python, Kafka, Spa
 ## Screenshots
 
 ### Dashboard
+![dashboard](https://github.com/tejasjbansal/Realtime-Indian-Election-Voting-System/assets/56173595/e214cc0b-aa7e-4e49-90f7-0fab3d2ba368)
+
+![Statistics](https://github.com/tejasjbansal/Realtime-Indian-Election-Voting-System/assets/56173595/c84296ca-d378-4449-8b30-e72733c83206)
+
+![Location](https://github.com/tejasjbansal/Realtime-Indian-Election-Voting-System/assets/56173595/073e6880-7bac-4ba1-9c2e-e6c47f057864)
+
 
 This project is designed to provide a seamless real-time voting experience, and the technologies used ensure scalability, reliability, and performance.
